@@ -47,17 +47,17 @@ const CardsForm = ({ estimate }) => {
     });
 
     if (addition >= 1 && addition <= 499) {
-      setPrice(53);
+      setPrice(0.53);
     } else if (addition >= 500 && addition <= 999) {
-      setPrice(45);
+      setPrice(0.45);
     } else if (addition >= 1000 && addition <= 2499) {
-      setPrice(4);
+      setPrice(0.4);
     } else if (addition >= 2500 && addition <= 4999) {
-      setPrice(36);
+      setPrice(0.36);
     } else if (addition >= 5000 && addition <= 9999) {
-      setPrice(32);
+      setPrice(0.32);
     } else if (addition >= 10000) {
-      setPrice(3);
+      setPrice(0.3);
     }
   }, [addition]);
 

@@ -388,7 +388,7 @@ export const Spinning = ({ setCongrats, setResult }) => {
 
         {!clicked ? (
           <button
-            className="px-6 py-2 mb-5 bg-[#243D8F] text-lg text-white rounded-lg"
+            className="px-6 py-2 mb-5 bg-[#d43b20] text-lg text-white rounded-lg"
             onClick={handleSpin}
           >
             Spin!

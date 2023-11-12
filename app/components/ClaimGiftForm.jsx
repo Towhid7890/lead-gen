@@ -48,12 +48,14 @@ const ClaimGiftForm = () => {
       >
         <p className="fontAlternative">
           {" "}
-          <span className="fontTitle" style={{ padding: "0" }}>
+          <span className="fontTitle" style={{ padding: "0", color: "red" }}>
             FREE
           </span>{" "}
           to 100 Independent Business Owner - Value up to £653
         </p>
-        <p className="fontTitle text-[#243D8F]">Claim Your FREE Gift Today!</p>
+        <p className="fontTitle text-[#243D8F]">
+          Claim Your <span className="text-red-600">FREE</span> Gift Today!
+        </p>
         {/* <label for="Name" className="fontForm mb-1">
           Full Name*
         </label>        */}

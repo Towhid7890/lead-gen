@@ -8,6 +8,7 @@ const Checkout = () => {
   const [cardsdata, setCardsdata] = useState("");
   const [keyfobdata, setKeyfobdata] = useState("");
   const [cTotal, setCtotal] = useState("");
+  const [due, setDue] = useState("");
   const [kfTotal, setKftotal] = useState("");
   const [srTotal, setSrtotal] = useState("");
   const [deposit, setDeposit] = useState(
@@ -64,6 +65,7 @@ const Checkout = () => {
         },
       });
       const paymentUrl = paymentResponse?.data?.data?.url;
+      console.log(paymentUrl);
 
       localStorage.setItem(
         "transactionRreference",
@@ -171,8 +173,13 @@ const Checkout = () => {
     if (cardsdata != "") {
       if (cardsdata.option == "full payment") {
         setCtotal(cardsdata.totaldue.toFixed(2).replace(",", "."));
+        setDue(0);
       } else {
         setCtotal(cardsdata.payment.toFixed(2).replace(",", "."));
+        setDue(
+          cardsdata.totaldue.toFixed(2).replace(",", ".") -
+            cardsdata.payment.toFixed(2).replace(",", ".")
+        );
       }
     }
   }, [cardsdata]);
@@ -291,6 +298,12 @@ const Checkout = () => {
             </td>
             <td className="resize-text py-1 px-2">&#163; {cTotal} </td>
           </tr>
+          <tr className="border-b bg-[#96cfd1]">
+            <td className="resize-text py-1 px-2">
+              {cardsdata.needed + 100} Additional Cards <br /> ( due ) <br />
+            </td>
+            <td className="resize-text py-1 px-2">&#163; {due} </td>
+          </tr>
           <tr className="border-b bg-[#ffffff]">
             <td className="resize-text py-1 px-2">
               {keyfobdata.customers} Keyfobs
@@ -332,7 +345,12 @@ const Checkout = () => {
           }}
         >
           &#163;
-          {(parseFloat(cTotal) + parseFloat(kfTotal) + parseFloat(srTotal))
+          {(
+            parseFloat(cTotal) +
+            parseFloat(kfTotal) +
+            parseFloat(srTotal) +
+            parseFloat(due)
+          )
             .toFixed(2)
             .replace(",", ".")}
         </p>
