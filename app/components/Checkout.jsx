@@ -23,11 +23,17 @@ const Checkout = () => {
   const [paymentLink, setPaymentLink] = useState(null);
 
   const dueAmount =
-    parseFloat(cTotal) + parseFloat(kfTotal) + parseFloat(srTotal) - deposit < 0
+    parseFloat(cTotal) +
+      parseFloat(kfTotal) +
+      parseFloat(srTotal) +
+      parseFloat(due) -
+      deposit <
+    0
       ? 0
       : (
           parseFloat(cTotal) +
           parseFloat(kfTotal) +
+          parseFloat(due) +
           parseFloat(srTotal) -
           deposit
         ).toFixed(2);
