@@ -14,6 +14,11 @@ export const Spinning = ({ setCongrats, setResult }) => {
   });
   const [clicked, setClicked] = useState(false);
 
+  const resetSpin = () => {
+    localStorage.setItem("click", JSON.stringify("no"));
+    window.location.reload();
+  };
+
   const handleSpin = () => {
     //ANTES DE LOS CAMBIOS
     // setDeg(Math.ceil(Math.random() * 100000))
@@ -394,12 +399,20 @@ export const Spinning = ({ setCongrats, setResult }) => {
             Spin!
           </button>
         ) : (
-          <button
-            className="px-6 py-2 mb-5 bg-[#243D8F] text-lg text-white rounded-lg opacity-50"
-            disabled
-          >
-            Already done!
-          </button>
+          <>
+            <button
+              className="px-6 py-2 mb-5 bg-[#243D8F] text-lg text-white rounded-lg opacity-50"
+              disabled
+            >
+              Already done!
+            </button>
+            <button
+              className="bg-red-800 text-white p-4 rounded-lg"
+              onClick={resetSpin}
+            >
+              Reset Spin
+            </button>
+          </>
         )}
       </div>
     </div>

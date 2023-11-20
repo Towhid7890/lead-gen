@@ -1,10 +1,6 @@
 "use client";
 
 export default function Home() {
-  const resetSpin = () => {
-    localStorage.setItem("click", JSON.stringify("no"));
-  };
-
   return (
     <div
       id="containerNEW"
@@ -16,10 +12,6 @@ export default function Home() {
       >
         GO TO FUNNEL
       </a>
-
-      <button className="bg-white text-slate-800 p-4 rounded-lg" onClick={resetSpin}>
-        Reset Spin
-      </button>
 
       {/* <ArtworkDelivery />
       <span className="w-full bg-black h-1"></span>      

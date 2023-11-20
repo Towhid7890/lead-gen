@@ -3,19 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const KeyfobsPrice = () => {
-  const [customers, setCustomers] = useState(250);
+  const [customers, setCustomers] = useState(0);
   const [price, setPrice] = useState(0.39);
   const [bagsRings, setBagsrings] = useState(0);
   const [optionsyes, setOptionsyes] = useState("Yes");
 
   const router = useRouter();
-
-  // useEffect(()=>{
-  //     let averagecustomers = JSON.parse(localStorage.getItem('customers'));
-  //     if(averagecustomers != ''){
-  //         setCustomers( parseInt(averagecustomers))
-  //     }
-  // },[])
 
   const includeRing = (e) => {
     setOptionsyes(e.target.value);
