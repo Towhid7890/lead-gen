@@ -309,7 +309,9 @@ const Checkout = () => {
             <td className="resize-text py-1 px-2">
               {cardsdata.needed + 100} Additional Cards <br /> ( due ) <br />
             </td>
-            <td className="resize-text py-1 px-2">&#163; {due.toFixed(2)} </td>
+            <td className="resize-text py-1 px-2">
+              &#163; {parseFloat(due).toFixed(2)}{" "}
+            </td>
           </tr>
           <tr className="border-b bg-[#ffffff]">
             <td className="resize-text py-1 px-2">
