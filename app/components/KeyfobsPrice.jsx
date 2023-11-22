@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const KeyfobsPrice = () => {
-  const [customers, setCustomers] = useState(250);
+  const [customers, setCustomers] = useState(0);
   const [price, setPrice] = useState(0.39);
   const [bagsRings, setBagsrings] = useState(0);
-  const [optionsyes, setOptionsyes] = useState("Yes");
+  const [optionsyes, setOptionsyes] = useState("No");
+  const [want, setWant] = useState(true);
 
   const router = useRouter();
 
@@ -15,6 +16,7 @@ const KeyfobsPrice = () => {
   };
 
   const handleRadioChange = (value) => {
+    setWant(false);
     setCustomers(value);
   };
   const handleChange = (e) => {
@@ -42,18 +44,27 @@ const KeyfobsPrice = () => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    // if( customers < 250 ){
-    //     alert('minimum 250 keyfobs.')
-    // } else{
-
-    localStorage.setItem(
-      "keyfobs",
-      JSON.stringify({
-        customers: customers,
-        price: price,
-        addrings: optionsyes,
-      })
-    );
+    if (customers == 0) {
+      localStorage.setItem(
+        "keyfobs",
+        JSON.stringify({
+          customers: customers,
+          price: price,
+          addrings: optionsyes,
+        })
+      );
+    } else if (customers < 250) {
+      return alert("minimum 250 keyfobs.");
+    } else {
+      localStorage.setItem(
+        "keyfobs",
+        JSON.stringify({
+          customers: customers,
+          price: price,
+          addrings: optionsyes,
+        })
+      );
+    }
 
     router.push("/funnel/order");
   };
@@ -123,6 +134,28 @@ const KeyfobsPrice = () => {
         </tbody>
       </table>
 
+      <div className="flex justify-center mt-5 items-center gap-4 fontGeneral py-2 border-2 mb-3 w-[60%] rounded-lg md:justify-around">
+        <h2 className="text-center">Do you want Keyfob??</h2>
+        <label className="text-[1.5rem] font-bold">
+          <input
+            onClick={() => handleRadioChange(250)}
+            type="radio"
+            name="optionsyes"
+            value="Yes"
+            checked={want == false}
+          />{" "}
+          Yes
+        </label>
+        <label className="text-[1.5rem] font-bold">
+          <input
+            onClick={() => handleRadioChange(0)}
+            type="radio"
+            checked={want == true}
+          />{" "}
+          No
+        </label>
+      </div>
+
       <div className="w-[90%] mt-4 flex flex-col justify-center items-center">
         {/* <p style={{color:'#4a6bb6' , padding: "0 0 5px 0" , textAlign:'center', lineHeight: '1', fontSize:'0.8rem'}}>Average no. of customers per month:</p> */}
 
@@ -151,26 +184,7 @@ const KeyfobsPrice = () => {
           type="text"
           className="w-full px-2 py-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
-        <div className="flex justify-center items-center gap-4 fontGeneral py-2 border-2 mb-3 w-[60%] rounded-lg md:justify-around">
-          <label className="text-[1.5rem] font-bold">
-            <input
-              onClick={() => handleRadioChange(250)}
-              type="radio"
-              name="optionsyes"
-              value="Yes"
-            />{" "}
-            Yes
-          </label>
-          <label className="text-[1.5rem] font-bold">
-            <input
-            onClick={() => handleRadioChange(0)}
-              type="radio"
-              name="optionsyes"
-              value="No"
-            />{" "}
-            No
-          </label>
-        </div>
+
         <p className="text-red-700 text-[1.5rem]" style={{ fontWeight: "700" }}>
           50% DISCOUNT TODAY!
         </p>

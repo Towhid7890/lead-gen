@@ -22,6 +22,8 @@ const CardsForm = ({ estimate }) => {
 
   const router = useRouter();
 
+  console.log(selectedOption);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -62,19 +64,19 @@ const CardsForm = ({ estimate }) => {
   }, [addition]);
 
   useEffect(() => {
-    // console.log('cambio por price')
-    // console.log(price);
-    // console.log(parseInt(addition));
     setCardsData({
       needed: addition - freeCards,
       totaldue: price * parseInt(addition) + 37.5 + 14,
       payment: parseFloat(paymentOption.replace("£", "")),
-      option: selectedOption ? "full payment" : "deposit",
+      option: selectedOption == true ? "full payment" : "deposit",
     });
-  }, [price]);
+  }, [price, selectedOption]);
 
   const handelChangePayment = (e) => {
     setPaymentOption(e.target.value);
+  };
+  const handleRadioChange = () => {
+    setSelectedOption(false);
   };
 
   const handleClick = (e) => {
@@ -99,9 +101,9 @@ const CardsForm = ({ estimate }) => {
       needed: addition - freeCards,
       totaldue: price * parseInt(addition) + 37.5 + 14,
       payment: parseFloat(paymentOption.replace("£", "")),
-      option: selectedOption ? "full payment" : "deposit",
+      option: selectedOption == true ? "full payment" : "deposit",
     });
-  }, [paymentOption]);
+  }, [paymentOption, selectedOption]);
 
   return (
     <div className="flex flex-col justify-center items-center w-full min-h-screen">
@@ -263,6 +265,7 @@ const CardsForm = ({ estimate }) => {
               type="radio"
               name="deposit"
               checked={!selectedOption}
+              // onClick={() => setSelectedOption(false)}
               onChange={() => setSelectedOption(false)}
             />
 

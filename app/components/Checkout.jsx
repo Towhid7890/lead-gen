@@ -164,6 +164,7 @@ const Checkout = () => {
   useEffect(() => {
     let storageSoft = JSON.parse(localStorage.getItem("software"));
     let storageCards = JSON.parse(localStorage.getItem("cardsdata"));
+    console.log(storageCards);
     let storageKeyfobs = JSON.parse(localStorage.getItem("keyfobs"));
 
     setSoftwaredata(storageSoft);
@@ -211,7 +212,7 @@ const Checkout = () => {
   }, [keyfobdata]);
 
   useEffect(() => {
-    setDeposit(parseFloat(cTotal) + parseFloat(kfTotal) + parseFloat(srTotal));
+    setDeposit(parseFloat(cTotal));
   }, [cTotal, kfTotal, srTotal]);
 
   const handleDeposit = (e) => {
@@ -308,7 +309,7 @@ const Checkout = () => {
             <td className="resize-text py-1 px-2">
               {cardsdata.needed + 100} Additional Cards <br /> ( due ) <br />
             </td>
-            <td className="resize-text py-1 px-2">&#163; {due} </td>
+            <td className="resize-text py-1 px-2">&#163; {due.toFixed(2)} </td>
           </tr>
           <tr className="border-b bg-[#ffffff]">
             <td className="resize-text py-1 px-2">
@@ -383,7 +384,7 @@ const Checkout = () => {
             <input
               type="text"
               name="deposit"
-              value={`${deposit}`}
+              value={`${deposit.toFixed(2)}`}
               onChange={handleDeposit}
               className=" outline-none max-w-[60px]"
             />

@@ -51,7 +51,7 @@ const ClaimGiftForm = () => {
           <span className="fontTitle" style={{ padding: "0", color: "red" }}>
             FREE
           </span>{" "}
-          to 100 Independent Business Owner - Value up to £653
+          to 100 Salon Owner - Value up to £653
         </p>
         <p className="fontTitle text-[#243D8F]">
           Claim Your <span className="text-red-600">FREE</span> Gift Today!
